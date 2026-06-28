@@ -1,19 +1,19 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, ConfigDict
+from typing import Optional
 
 
 class UserCreate(BaseModel):
     full_name: str
     email: EmailStr
     password: str
-    phone: str | None = None
+    phone: Optional[str] = None
 
 
 class UserResponse(BaseModel):
     id: int
     full_name: str
     email: EmailStr
-    phone: str | None = None
+    phone: Optional[str]
     is_active: bool
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
